@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config('../.env');
 
 const tasksConfig = {
     apiKey : process.env.ZADANIA_API_KEY,
@@ -8,6 +8,7 @@ const tasksConfig = {
 }
 
 export const getToken = async (taskName) => {
+    console.log(tasksConfig);
     try {
         const response = await fetch(`${tasksConfig.url}token/${taskName}`, {
             method: "POST",
