@@ -1,45 +1,35 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 const openaiConfig = {
-    apiKey : "",
-    organization : "",
+    apiKey : process.env.OPENAI_API_KEY,
+    organization : process.env.OPENAI_ORGANIZATION_ID,
     url : "https://api.openai.com/",
     model : "gpt-3.5-turbo",
 }
 
-const escape = document.createElement('textarea');
+//
+// const escape = document.createElement('textarea');
+//
+// const escapeHTML = (html) => {
+//     escape.textContent = html;
+//     return escape.innerHTML;
+// }
+//
+// const unescapeHTML = (html) => {
+//     escape.innerHTML = html;
+//     return escape.textContent;
+// }
 
-const escapeHTML = (html) => {
-    escape.textContent = html;
-    return escape.innerHTML;
-}
-
-const unescapeHTML = (html) => {
-    escape.innerHTML = html;
-    return escape.textContent;
-}
-
-export const initialize = (apiKey, organization) => {
-    openaiConfig.apiKey = apiKey;
-    openaiConfig.organization = organization;
-}
-
-export const getModels = (destination) => {
-    const destinationElement = document.getElementById(destination);
-    destinationElement.innerHTML = "";
-    destinationElement.ariaBusy = "true";
-
-    fetch(`${openaiConfig.url}v1/models`, {
+export const getModels = async () => {
+    const response = await fetch(`${openaiConfig.url}v1/models`, {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${openaiConfig.apiKey}`,
             "OpenAI-Organization": openaiConfig.organization
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            destinationElement.innerHTML = JSON.stringify(data);
-            destinationElement.ariaBusy = "false";
-        })
-        .catch(error => console.error("Error:", error));
+    return await response.json();
 }
 
 export const moderationAPI = async (textToModerate) => {
