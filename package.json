@@ -1,0 +1,12 @@
+{
+  "name": "AIDevs helper project",
+  "version": "0.1.0",
+  "description": "RIDIK 2",
+  "author": "Pawel Dulak",
+  "license": "ISC",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
