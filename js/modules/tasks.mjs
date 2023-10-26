@@ -4,12 +4,12 @@ const tasksConfig = {
     url : "",
 }
 
-const configure = (config) => {
+export const configure = (config) => {
     tasksConfig.apiKey = config.zadaniaApiKey;
     tasksConfig.url = config.zadaniaUrl;
 }
 
-const getToken = async (taskName) => {
+export const getToken = async (taskName) => {
     try {
         const response = await fetch(`${tasksConfig.url}token/${taskName}`, {
             method: "POST",
@@ -35,7 +35,7 @@ const getToken = async (taskName) => {
     }
 }
 
-const getTaskData = async (token = tasksConfig.token) => {
+export const getTaskData = async (token = tasksConfig.token) => {
     try {
         const response = await fetch(`${tasksConfig.url}task/${token}`)
         if (!response.ok) {
@@ -51,12 +51,12 @@ const getTaskData = async (token = tasksConfig.token) => {
     }
 }
 
-const getTokenAndTaskData = async (taskName) => {
+export const getTokenAndTaskData = async (taskName) => {
     await getToken(taskName)
     return await getTaskData()
 }
 
-const sendAnswer = async (answer, token = tasksConfig.token) => {
+export const sendAnswer = async (answer, token = tasksConfig.token) => {
     try {
         const response = await fetch(`${tasksConfig.url}answer/${token}`, {
             method: "POST",
@@ -75,12 +75,4 @@ const sendAnswer = async (answer, token = tasksConfig.token) => {
         console.error("Error fetching data:", error);
         return null;
     }
-}
-
-module.exports = {
-    getToken,
-    getTaskData,
-    getTokenAndTaskData,
-    sendAnswer,
-    configure
 }
