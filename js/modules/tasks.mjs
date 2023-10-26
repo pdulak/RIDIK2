@@ -1,12 +1,13 @@
-const tasksConfig = {
-    apiKey : "",
-    token : "",
-    url : "",
-}
+import dotenv from 'dotenv';
+dotenv.config();
 
-export const configure = (config) => {
-    tasksConfig.apiKey = config.zadaniaApiKey;
-    tasksConfig.url = config.zadaniaUrl;
+const dbURL = process.env.DATABASE_URL;
+
+
+const tasksConfig = {
+    apiKey : process.env.ZADANIA_API_KEY,
+    token : "",
+    url : process.env.ZADANIA_URL,
 }
 
 export const getToken = async (taskName) => {
