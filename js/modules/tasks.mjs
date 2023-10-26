@@ -1,9 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const dbURL = process.env.DATABASE_URL;
-
-
 const tasksConfig = {
     apiKey : process.env.ZADANIA_API_KEY,
     token : "",
