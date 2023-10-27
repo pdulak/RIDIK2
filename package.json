@@ -4,9 +4,9 @@
   "description": "RIDIK 2",
   "author": "Pawel Dulak",
   "license": "ISC",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
+    "dotenv": "^16.3.1",
     "uuid": "^9.0.0"
   }
 }
